@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
+import useVisualMode from 'hooks/useVisualMode';
+
 
 
 function Form(props) {
+const {back} = useVisualMode()
 const [student, setStudent] = useState(props.student || "");
 const [interviewer, setInterviewer] = useState(props.interviewer || null);
     const reset = function () {
@@ -12,7 +15,8 @@ const [interviewer, setInterviewer] = useState(props.interviewer || null);
     }
     const cancel = function () {
         props.onCancel()
-        reset()
+      reset()
+      back()
     }
     return (
     

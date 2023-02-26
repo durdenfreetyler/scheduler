@@ -8,7 +8,12 @@ import Show from "./Appointment/Show";
 import Empty from "./Appointment/Empty";
 import Header from "./Appointment/Header";
 import Appointment from "components/Appointment";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors";
+import useVisualMode from "hooks/useVisualMode";
 
 // const appointments = {
 //   1: {
@@ -98,15 +103,18 @@ export default function Application(props) {
   });
 
   const appointmentDays = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day);
+
   const appointmentList = appointmentDays.map((appointment) => {
-      const interview = getInterview(state, appointment.interview);
+    const interview = getInterview(state, appointment.interview);
     return (
-    <Appointment
+      <Appointment
       key={appointment.id}
       id={appointment.id}
       time={appointment.time}
       interview={interview}
-    />
+      interviewers={interviewers}
+      />
     );
   });
   console.log("state.interviewers", state.interviewers);
