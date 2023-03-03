@@ -1,8 +1,12 @@
 import { useState } from "react";
 
+// Create a state with the initial mode and history of modes, and it returns an object with the current mode and functions to transition to a new mode or go back to the previous mode.
+
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
+
+  // Takes a newMode argument and updates the mode state to the new mode. It also updates the history state by adding the new mode to the end of the array unless the replace argument is true, in which case it replaces the last element in the history array with the new mode.
 
   function transition(newMode, replace = false) {
     setMode(newMode);
@@ -17,6 +21,8 @@ export default function useVisualMode(initial) {
     });
   }
 
+  // Updates the mode state and history state to the previous mode in the history array unless there is only one item in the array, in which case it does nothing.
+
   function back() {
     if (history.length > 1) {
       const newHistory = [...history.slice(0, -1)];
@@ -28,28 +34,3 @@ export default function useVisualMode(initial) {
 
   return { mode, transition, back };
 }
-
-/*
- mode: 1
- history: [1]
- -> transtion(2)
- mode: 2 
- history: [1, 2]
- -> transition(3)
- mode: 3
- history: [1, 2, 3]
- -> back()
- mode: 2
- history: [1, 2]  
- */
-
-// transition Empty to Create
-// back Create to Empty
-// transition Empty to Create
-// transition Create to Saving
-// transition Create to Show
-// transition Show to Edit
-// back Edit to Show
-// transition Show to Confirm
-// transition Confirm to Deleting
-// transition Confirm to Empty

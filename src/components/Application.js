@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-
 import "components/Application.scss";
 import DayList from "./DayList";
-import InterviewerList from "./InterviewerList";
-import Show from "./Appointment/Show";
-import Empty from "./Appointment/Empty";
 import Header from "./Appointment/Header";
 import Appointment from "components/Appointment";
 import {
@@ -13,27 +8,18 @@ import {
   getInterview,
   getInterviewersForDay,
 } from "helpers/selectors";
-import useVisualMode from "hooks/useVisualMode";
 import useApplicationData from "hooks/useApplicationData";
 
-const interviewers = [
-  { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
-  { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
-  { id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" },
-  { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
-  { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" },
-];
+// Exports the Application component which uses state and functions from the useApplicationData hook to render a page with a DayList component, appointments list, and Appointment component, and passes in the necessary props for booking and cancelling interviews.
 
 export default function Application(props) {
   const { state, setDay, bookInterview, cancelInterview } =
     useApplicationData();
-
   const interviewers = getInterviewersForDay(state, state.day);
-
   const appointmentDays = getAppointmentsForDay(state, state.day);
-
   const appointmentList = appointmentDays.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+
     return (
       <Appointment
         key={appointment.id}
@@ -46,14 +32,7 @@ export default function Application(props) {
       />
     );
   });
- 
 
-
-  // console.log("state.interviewers", state.interviewers);
-
- 
-
-  
   return (
     <main className="layout">
       <section className="sidebar">
@@ -73,7 +52,10 @@ export default function Application(props) {
         />
         <Header time={props.time} />
       </section>
-      <section className="schedule">{appointmentList}</section>
+      <section className="schedule">
+        {appointmentList}
+        <Appointment key="last" time="5pm" />
+      </section>
     </main>
   );
 }

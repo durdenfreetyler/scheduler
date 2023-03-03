@@ -1,12 +1,9 @@
 import React from "react";
 
-function Show(props) {
-  // console.log("props", props);
+// Displays appointment details including the student name, interviewer name, and edit/delete buttons.
 
-  //     student:String eg. "Lydia Miller-Jones"
-  // interviewer:Object we can use the interview object that already exists in stories/index.js for this
-  // onEdit:Function to be called when the user clicks the Edit button
-  // onDelete:Function
+function Show(props) {
+
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

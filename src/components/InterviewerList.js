@@ -1,11 +1,12 @@
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem";
-import "components/InterviewerList.scss"
-import PropTypes from "prop-types"; 
+import "components/InterviewerList.scss";
+import PropTypes from "prop-types";
+
+// Renders a list of interviewers and displays the currently selected interviewer, which can be updated when a different interviewer is clicked, and it also specifies the interviewers prop to be an array and required using PropTypes.
 
 function InterviewerList(props) {
   const interviewers = props.interviewers.map((interviewer) => {
-    console.log("props", props)
     return (
       <InterviewerListItem
         key={interviewer.id}

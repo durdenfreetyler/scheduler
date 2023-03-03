@@ -2,16 +2,12 @@ import classNames from "classnames";
 import React from "react";
 import "components/InterviewerListItem.scss";
 
-function InterviewerListItem(props) {
- 
-  // props.id
-  // props.name
-  // props.avatar
-  // selected
+// Renders an interviewer item, which includes an avatar image, the interviewer's name, and a selected state that is toggled by clicking the item, and applies a selected class to the item if it is selected.
 
-    const interviewerClass = classNames(
-      "interviewers__item", { "interviewers__item--selected": props.selected }, 
-  );
+function InterviewerListItem(props) {
+  const interviewerClass = classNames("interviewers__item", {
+    "interviewers__item--selected": props.selected,
+  });
 
   return (
     <li className={interviewerClass} onClick={props.setInterviewer}>

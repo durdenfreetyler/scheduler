@@ -1,3 +1,5 @@
+// Takes the state and a day as input, and returns an array of appointments for that day from the state object.
+
 export function getAppointmentsForDay(state, day) {
   const selectedDay = state.days.find((d) => d.name === day);
 
@@ -11,6 +13,7 @@ export function getAppointmentsForDay(state, day) {
 
   return appointments;
 }
+// Takes the state and an interview object as input, and returns an object containing the student name and an interviewer object with their id, name, and avatar.
 
 export function getInterview(state, interview) {
   if (!interview) {
@@ -28,6 +31,8 @@ export function getInterview(state, interview) {
     },
   };
 }
+
+// Takes the state and a day as input, and returns an array of interviewers available on that day from the state object.
 
 export function getInterviewersForDay(state, day) {
   const selectedDay = state.days.find((d) => d.name === day);
